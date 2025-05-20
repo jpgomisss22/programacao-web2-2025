@@ -1,21 +1,37 @@
-<?php
+<?php 
 
-#cabeçalho
+#iniciar sessão
+session_start();
+
+#Base de dados
+include 'db.php';
+
+#Cabeçalho
 include 'header.php';
 
-$pagina = $_GET['aaa'];
+
+#Conteúdo da página
+
+if(isset($_SESSION['login'])){//se existir um login
+	if(isset($_GET['pagina'])){
+		$pagina = $_GET['pagina'];
+	}
+	else{
+		$pagina = 'teste';
+	}
+}
+
+else{
+		$pagina = 'home';
+}
 
 switch ($pagina) {
-
-    case 'vendas': include 'views/vendas.php'; break;
-    case 'contatos': include 'views/contacts.php'; break;
-    default: include 'views/home.php'; 
-    break;
+	case 'teste': include 'views/teste.php'; break;
+	case 'teste2': include 'views/teste2.php'; break;
+	default: include 'views/home.php'; 
+	break;
 }
 
 
-echo "VAI CORINTHIANS";
-
-#rodapé
-include 'footer.php'; ?>
-
+#Rodapé
+include 'footer.php';
